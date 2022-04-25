@@ -37,8 +37,7 @@ rf_pipe = Pipeline([('prep', num_prep), ('rf', rf)])
 # Fit
 rf_pipe_fitted = rf_pipe.fit(X_train, y_train)
 
-# Performance
-
+# Performance (initial score is 0.89)
 pred = rf_pipe_fitted.predict(X_test)
 
 print(f'accuracy_score: {round(accuracy_score(y_test, pred), 2) }')
