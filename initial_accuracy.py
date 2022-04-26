@@ -1,4 +1,6 @@
+from dbm import dumb
 import pandas as pd
+import joblib
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import RandomForestClassifier
@@ -6,6 +8,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score, plot_confusion_matrix
+from yaml import dump
 
 
 # Load data
@@ -34,8 +37,12 @@ rf = RandomForestClassifier(random_state=0, max_depth=4, n_estimators=200)
 # Model pipeline
 rf_pipe = Pipeline([('prep', num_prep), ('rf', rf)])
 
+
 # Fit
 rf_pipe_fitted = rf_pipe.fit(X_train, y_train)
+
+# Save the fitted pipeline
+joblib.dump(rf_pipe_fitted, 'model.joblib')
 
 # Performance (initial score is 0.89)
 pred = rf_pipe_fitted.predict(X_test)
