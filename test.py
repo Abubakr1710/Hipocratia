@@ -3,6 +3,9 @@ import numpy as np
 import heart_attack as ht
 import  pandas as pd 
 from heart_attack import predic
+import joblib
+
+mp = joblib.load('ada_joblib')
 
 def test_inputs():
     input_features = []
@@ -25,7 +28,10 @@ def test_inputs():
     input_features.append([age,sex,exng,caa,cp,trtbps,chol,fbs,restecg,thalachh,oldpeak,slp,thall])
     return pd.DataFrame(input_features, columns=['age','sex','exng','caa','cp','trtbps','chol','fbs','restecg','thalachh','oldpeak','slp','thall'])
 
-predictions = predic(test_inputs())    
+new_data = predic(test_inputs())
+
+predictions = mp.predict(new_data)[0] 
+
 time(sleep(3))
 if predictions == 1:
     print('you may have heart attack')

@@ -10,6 +10,7 @@ from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn import metrics
 import time
+import joblib
 # Load data
 data = pd.read_csv('heart_attack\heart.csv')
 
@@ -64,7 +65,8 @@ print(results_ord.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, c
 def predic(pth):
     best_model = classifiers['AdaBoost']
     best_model.fit(X_train,y_train)
-    predicts = best_model.predict(pth)
+
     
 
-    return predicts
+
+    return best_model
