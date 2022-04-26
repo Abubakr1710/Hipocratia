@@ -61,10 +61,10 @@ print(results_ord.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, c
 
 
 
-def predic():
+def predic(pth):
     best_model = classifiers['AdaBoost']
     best_model.fit(X_train,y_train)
-    predicts = best_model.predict(X_test)
+    predicts = best_model.predict(pth)
     
 
     return predicts
